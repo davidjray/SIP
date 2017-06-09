@@ -82,10 +82,10 @@ def setup_pins():
     Define and setup GPIO pins for shift register operation
     """
 
-    global pin_sr_dat
-    global pin_sr_clk
-    global pin_sr_noe
-    global pin_sr_lat
+    global pin_sr_dat # DATA IN
+    global pin_sr_clk # CLOCK
+    global pin_sr_noe # BLANK
+    global pin_sr_lat # LATCH
     global pi
 
     try:
@@ -116,10 +116,13 @@ def setup_pins():
             pi.write(pin_sr_dat, 0)
             pi.write(pin_sr_lat, 0)
         else:
+            # Set as Outputs
             GPIO.setup(pin_sr_noe, GPIO.OUT)
             GPIO.setup(pin_sr_clk, GPIO.OUT)
             GPIO.setup(pin_sr_dat, GPIO.OUT)
             GPIO.setup(pin_sr_lat, GPIO.OUT)
+
+            #Set output
             GPIO.output(pin_sr_noe, GPIO.HIGH)
             GPIO.output(pin_sr_clk, GPIO.LOW)
             GPIO.output(pin_sr_dat, GPIO.LOW)
